@@ -17,7 +17,6 @@ for column in ["DayOfWeek", "NearPlace", "CrimeAgainst"]:
     label_encoders[column] = LabelEncoder()
     crime_data[column] = label_encoders[column].fit_transform(crime_data[column])
 
-
 label_encoders['Offenses'] = LabelEncoder()
 crime_data['Offenses'] = label_encoders['Offenses'].fit_transform(crime_data['Offenses'])
 
@@ -31,7 +30,6 @@ crime_data['Day'] = crime_data['Date'].dt.day
 X = crime_data[['DayOfWeek', 'NearPlace', 'Latitude', 'Longitude', 'CrimeAgainst', 'Year', 'Month', 'Day']]
 y = crime_data['Offenses']
 print(X)
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 @app.route('/')
@@ -48,7 +46,7 @@ def login():
 
 @app.route('/prediction', methods=['POST'])
 def predict():
-  
+   
     day_of_week = request.form['dayofweek']
     crime_against = request.form['crimeagainst']
     near_place = request.form['nearplace']
@@ -60,7 +58,7 @@ def predict():
     day = int(request.form['day'])
     model_name = request.form['model']
 
-    
+
     day_of_week_encoded = label_encoders['DayOfWeek'].transform([day_of_week])
     crime_against_encoded = label_encoders['CrimeAgainst'].transform([crime_against])
     near_place_encoded = label_encoders['NearPlace'].transform([near_place])
@@ -75,12 +73,11 @@ def predict():
 
     model.fit(X_train, y_train)
 
-
     prediction = model.predict([[day_of_week_encoded[0], near_place_encoded[0], latitude, longitude, crime_against_encoded[0], year, month, day]])
 
     predicted_offense = label_encoders['Offenses'].inverse_transform(prediction)
 
-    return render_template("crime.html", prediction=predicted_offense[0])
+    return render_template("crime.html", prediction=predicted_offense[2])
 
 
-app.run(debug=True)
+app.run()

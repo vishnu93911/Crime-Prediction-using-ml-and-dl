@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="icon" type="image/png" href="https://ps.w.org/login-customizer/assets/icon-256x256.png?rev=2455454">
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            background:url("https://scx2.b-cdn.net/gfx/news/hires/2021/crime-1.jpg") no-repeat center center fixed;
+            background-size:cover;
+        }
+        
+        .login {
+            width: 300px;
+            background-color:rgb(34,44,24);
+            padding: 20px;
+            margin:100px auto;
+            color:white;
+            border-radius: 10px;
+            box-shadow: 6px 5px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .login label {
+            font-weight: bold;
+        }
+
+        .login input[type="text"],
+        .login input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login button[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .login button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="login">
+            <form action="/login" method="POST">
+                <label>Username</label><br>
+                <input type="text" name="username"><br>
+                <label>Password</label><br>
+                <input type="password" name="password"><br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </center>
+</body>
+</html>
